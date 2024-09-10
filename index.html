@@ -7,25 +7,77 @@
     <title>Document</title>
     <style>
         .box {
-            height: 20px;
+            height: 3cqh;
         }
 
         .color {
             border: 1px solid gray;
+            border-radius: 15px;
             margin: 10px;
+            width: 200px;
+            overflow: hidden;
         }
 
         .topBox {
-            padding: 2px;
+            padding: 4px 20px;
             display: flex;
             justify-content: space-between;
-            background-color: lightgray;
+            background-color: #484848;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+
+        <!-- <button onclick="startAdd()">+</button>
+        <br/>
+        <input 
+            type="text" 
+            oninput="" 
+            value=""
+            />
+        <button onclick="addColor()">Legg til ny farge</button>
+        <button onclick="cancelAddColor()">Avbryt</button>      -->
+
+        <div class="colors">
+
+            <div class="color">
+                <div class="topBox">
+                    <div>red</div>
+                    <button>x</button>
+                </div>
+                <div style="background-color: red" class="box"></div>
+            </div>
+
+            <div class="color">
+                <div class="topBox">
+                    <div>green</div>
+                    <button>x</button>
+                </div>
+                <div style="background-color: green" class="box"></div>
+            </div>
+
+            <div class="color">
+                <div class="topBox">
+                    <div>blue</div>
+                    <button>x</button>
+                </div>
+                <div style="background-color: blue" class="box"></div>
+            </div>
+
+            <div class="color">
+                <div class="topBox">
+                    <div>yellow</div>
+                    <button>x</button>
+                </div>
+                <div style="background-color: yellow" class="box"></div>
+            </div>
+
+        </div>
+
+    </div>
     <script>
         /*
             CRUD 
@@ -36,90 +88,29 @@
         */
 
         // model
-        let colors = ['red', 'green', 'blue', 'yellow'];
-        let deleted = [];
-        let isAdding = false;
-        let colorInput;
 
         // view
-        updateView();
         function updateView() {
-            let html = '';
-            for (let index = 0; index < colors.length; index++) {
-                let color = colors[index];
-                html += /*HTML*/`
-                    <div class="color">
-                        <div class="topBox">
-                            <div>${color}</div>
-                            <button onclick="deleteColor(${index})">x</button>
-                        </div>
-                        <div style="background-color: ${color}" class="box"></div>
-                    </div>                
-                `;
-
-            }
-
             document.getElementById('app').innerHTML = /*HTML*/`
-                <h3>Farger</h3>
-                <button onclick="undo()">⤶</button>
-                ${createAddColorHtml()}
-                <hr/>
-                <div class="colors">
-                    ${html}
-                </div>
             `;
-        }
-
-        function createAddColorHtml() {
-            if (isAdding) {
-                return /*HTML*/`
-                    <br/>
-                    <input 
-                        type="text" 
-                        oninput="colorInput=this.value" 
-                        value="${colorInput ?? ''}"
-                        />
-                    <button onclick="addColor()">Legg til ny farge</button>
-                    <button onclick="cancelAddColor()">Avbryt</button>                
-                `;
-            } else {
-                return /*HTML*/`
-                    <button onclick="startAdd()">+</button>
-                `;
-            }
         }
 
         // controller
         function addColor() {
-            if (!colorInput) return;
-            colors.push(colorInput);
-            isAdding = false;
-            colorInput = null;
             updateView();
         }
 
         function deleteColor(index) {
-            const elements = colors.splice(index, 1);
-            deleted.push(elements[0]);
-            updateView();
-        }
-
-        function undo() {
-            const color = deleted.pop();
-            colors.push(color);
             updateView();
         }
 
         function startAdd() {
-            isAdding = true;
             updateView();
         }
 
         function cancelAddColor() {
-            isAdding = false;
             updateView();
         }
-
     </script>
 </body>
 
