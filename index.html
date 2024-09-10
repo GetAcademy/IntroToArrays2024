@@ -40,42 +40,7 @@
             />
         <button onclick="addColor()">Legg til ny farge</button>
         <button onclick="cancelAddColor()">Avbryt</button>      -->
-
-        <div class="colors">
-
-            <div class="color">
-                <div class="topBox">
-                    <div>red</div>
-                    <button>x</button>
-                </div>
-                <div style="background-color: red" class="box"></div>
-            </div>
-
-            <div class="color">
-                <div class="topBox">
-                    <div>green</div>
-                    <button>x</button>
-                </div>
-                <div style="background-color: green" class="box"></div>
-            </div>
-
-            <div class="color">
-                <div class="topBox">
-                    <div>blue</div>
-                    <button>x</button>
-                </div>
-                <div style="background-color: blue" class="box"></div>
-            </div>
-
-            <div class="color">
-                <div class="topBox">
-                    <div>yellow</div>
-                    <button>x</button>
-                </div>
-                <div style="background-color: yellow" class="box"></div>
-            </div>
-
-        </div>
+    </div>
 
     </div>
     <script>
@@ -88,11 +53,32 @@
         */
 
         // model
+        let colors = ['red', 'lightgreen', 'blue', 'yellow', 'gray', 'black'];
 
         // view
-        function updateView() {
+        updateView();
+        function updateView() {            
             document.getElementById('app').innerHTML = /*HTML*/`
+                <div class="colors">
+                    ${createColorsHtml()}
+                </div>
             `;
+        }
+
+        function createColorsHtml(){
+            let colorsHtml = '';
+            for (let color of colors) {
+                colorsHtml += /*HTML*/`
+                    <div class="color">
+                        <div class="topBox">
+                            <div>${color}</div>
+                            <button>x</button>
+                        </div>
+                        <div style="background-color: ${color}" class="box"></div>
+                    </div>                                
+                `;
+            }
+            return colorsHtml;
         }
 
         // controller

@@ -1,13 +1,14 @@
 Lister / arrays
 
-- Intro i console
+1: Intro i console
   - lage array, tom eller med verdier
   - lese ut enkeltverdier
   - endre enkeltverdier
   - utvide listen
   - loope gjennom en liste
-- Eksempel med MVC - liste av farger
+2: Eksempel med MVC - liste av farger
   - CRUD - Create Read Update Delete
-- Flere eksempler på bruk av lister
+3: Flere eksempler på bruk av lister
   - Telle antall forekomster ut fra kriterie
   - Sjekke om en liste er sortert
+4: Ev. problematikk rundt at lister er referansetype
